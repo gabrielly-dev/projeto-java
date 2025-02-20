@@ -2,12 +2,19 @@ package auraSubversiva.principal;
 
 import java.util.Scanner;
 
+import auraSubversiva.controller.AcessoriosController;
+
 
 public class Principal {
 	public static void Menu() {
+		AcessoriosController acessorios = new AcessoriosController();
+		
 		Scanner leitura = new Scanner (System.in);
 		
 		int opcao;
+		Long id;
+		
+		
 		
 		while (true) {
 			System.out.println("******************************************************");
@@ -18,13 +25,11 @@ public class Principal {
 			System.out.println("*                                                    *");
 			System.out.println("*               1 - Cadastrar Produto                *");
 			System.out.println("*               2 - Listar Produtos                  *");
-			System.out.println("*               3 - Cadastrar Usuário                *");
-			System.out.println("*               4 - Listar Usuários                  *");
-			System.out.println("*               5 - Cadastrar Evento                 *");
-			System.out.println("*               6 - Listar Eventos                   *");
-			System.out.println("*               7 - Cadastrar Parcerias              *");
-			System.out.println("*               8 - Listar Parcerias                 *");
-			System.out.println("*               9 - Sair                             *");
+			System.out.println("*               3 - Atualizar um Produto             *");
+			System.out.println("*               4 - Deletar um Produto               *");
+			System.out.println("*               5 - Realizar uma Busca               *");
+			System.out.println("*               6 - Verificar Disponibilidade        *");
+			System.out.println("*               7 - Sair                             *");
 			System.out.println("*                                                    *");
 			System.out.println("******************************************************");
 			System.out.println("Entre com a opção desejada:                           ");
@@ -43,14 +48,23 @@ public class Principal {
 			switch(opcao) {
 			case 1:
 				System.out.println("Cadastrar Produto\n\n");
+				/*
+				 * public Aneis(int tipo, Long id, String nome, double preco, String material, int tamanho) {
+		super(tipo, id, nome, preco, material);
+		this.tamanho = tamanho;
+	}
+				 */
+				System.out.println("");
 				
 				break;
 			case 2:
 				System.out.println("Listar Produtos\n\n");
-				
+				acessorios.listarTodos();
+
 				break;
 			case 3: 
 				System.out.println("Cadastrar Usuário\n\n");
+				
 				
 				break;
 			case 4:
