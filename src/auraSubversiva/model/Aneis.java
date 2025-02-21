@@ -22,7 +22,7 @@ public class Aneis extends Acessorios{
 	@Override
 	public void descricao() {
 		super.descricao();
-		System.out.println("Tamanho: " + this.tamanho);
+		System.out.println("Tamanho: " + this.tamanho + "\n\n");
 	}
 
 }

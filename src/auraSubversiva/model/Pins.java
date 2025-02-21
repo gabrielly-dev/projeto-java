@@ -3,18 +3,18 @@ package auraSubversiva.model;
 //dimensoes
 
 public class Pins extends Acessorios{
-	private int pins;
+	private String pins;
 
-	public Pins(int tipo, Long id, String nome, double preco, String material, int pins) {
+	public Pins(int tipo, Long id, String nome, double preco, String material, String dimensao) {
 		super(tipo, id, nome, preco, material);
-		this.pins = pins;
+		this.pins = dimensao;
 	}
 
-	public int getPins() {
+	public String getPins() {
 		return pins;
 	}
 
-	public void setPins(int pins) {
+	public void setPins(String pins) {
 		this.pins = pins;
 	}
 	

@@ -2,24 +2,24 @@ package auraSubversiva.model;
 //dimensoes
 
 public class Brincos extends Acessorios{
-	private int dimensoes;
+	private String dimensoes;
 
-	public Brincos(int tipo, Long id, String nome, double preco, String material, int dimensoes) {
+	public Brincos(int tipo, Long id, String nome, double preco, String material, String dimensao) {
 		super(tipo, id, nome, preco, material);
-		this.dimensoes = dimensoes;
+		this.dimensoes = dimensao;
 	}
 
-	public int getDimensoes() {
+	public String getDimensoes() {
 		return dimensoes;
 	}
 
-	public void setDimensoes(int dimensoes) {
+	public void setDimensoes(String dimensoes) {
 		this.dimensoes = dimensoes;
 	}
 	
 	@Override
 	public void descricao() {
 		super.descricao();
-		System.out.println("Dimensões: " + this.dimensoes);
+		System.out.println("Dimensões: " + this.dimensoes + "\n");
 	}
 }

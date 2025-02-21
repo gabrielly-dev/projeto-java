@@ -26,13 +26,16 @@ public class AcessoriosController implements AcessoriosRepository {
 
 	@Override
 	public void listarTodos() {
-		
+		for (var acessorio : armazenamentoDeAcessorios) {
+			acessorio.descricao();
+		}
 	}
 
 	@Override
 	public void cadastrar(Acessorios acessorios) {
 		armazenamentoDeAcessorios.add(acessorios);
-		System.out.println("\nO acessório de ID: " + acessorios.getId() + " foi cadastrado com sucesso!");
+		System.out.println("\nO acessório de ID: " + acessorios.getId() + " foi cadastrado com sucesso!\n");
+		acessorios.descricao();
 	}
 
 	@Override
@@ -79,12 +82,13 @@ public class AcessoriosController implements AcessoriosRepository {
 	
 	public Long gerarID() {
 		Random idAleatorio = new Random();
-		Long id = idAleatorio.nextLong(9000000000000L);
+		Long id = idAleatorio.nextLong(9000000L);
 		return id;
 	}
 	
 	public Acessorios buscarNaCollection(Long id) {
 		for (var acessorio : armazenamentoDeAcessorios) {
+			System.out.println();
 			if (acessorio.getId() == id) {
 				return acessorio;
 			}

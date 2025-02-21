@@ -15,45 +15,7 @@ public abstract class Acessorios{
 		this.material = material;
 	}
 
-	public int getTipo() {
-		return tipo;
-	}
 
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public double getPreco() {
-		return preco;
-	}
-
-	public void setPreco(double preco) {
-		this.preco = preco;
-	}
-
-	public String getMaterial() {
-		return material;
-	}
-
-	public void setMaterial(String material) {
-		this.material = material;
-	}
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 	
 	public void descricao() {
 		String tipo = "";
@@ -73,15 +35,75 @@ public abstract class Acessorios{
 			break;
 		}
 		
-		System.out.println("\n\n*********************************************************************");
-		System.out.println("                         Dados do Acessório:                         ");
-		System.out.println("*********************************************************************");
+		System.out.println("**********************************************************");
+		System.out.println("                   Dados do Acessório:                    ");
+		System.out.println("**********************************************************");
 		System.out.println("Tipo do Acessório: " + tipo);
 		System.out.println("Id: " + this.id);
 		System.out.println("Nome: " + this.nome);
 		System.out.println("Preço: " + this.preco);
 		System.out.println("Material: " + this.material);
 		
+	}
+
+
+
+	public int getTipo() {
+		return tipo;
+	}
+
+
+
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
+	}
+
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+
+	public double getPreco() {
+		return preco;
+	}
+
+
+
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
+
+
+
+	public String getMaterial() {
+		return material;
+	}
+
+
+
+	public void setMaterial(String material) {
+		this.material = material;
 	}
 
 

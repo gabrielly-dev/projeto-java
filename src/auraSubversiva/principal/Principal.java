@@ -1,6 +1,5 @@
 package auraSubversiva.principal;
 
-import java.util.List;
 import java.util.Scanner;
 
 /*
@@ -10,7 +9,6 @@ import java.util.Scanner;
  */
 
 import auraSubversiva.controller.AcessoriosController;
-import auraSubversiva.model.Acessorios;
 import auraSubversiva.model.Aneis;
 import auraSubversiva.model.Brincos;
 import auraSubversiva.model.Colares;
@@ -23,31 +21,30 @@ public class Principal {
 		
 		Scanner leitura = new Scanner (System.in);
 		
-		int opcao, tipo, tamanho, dimensao, circunferencia, tipoBusca;
+		int opcao, tipo, tamanho, circunferencia, tipoBusca, dimensaoLargura, dimensaoAltura, dimensaoGrossura;
 		double preco;
-		String nome, material;
+		String nome, material, dimensao;
 		Long id;
-		
-		
+
 		
 		while (true) {
-			System.out.println("******************************************************");
-			System.out.println("*                                                    *");
-			System.out.println("*                MODA AURA SUBVERSIVA                *");
-			System.out.println("*                                                    *");
-			System.out.println("******************************************************");
-			System.out.println("*                                                    *");
-			System.out.println("*               1 - Cadastrar Produto                *");
-			System.out.println("*               2 - Listar Produtos                  *");
-			System.out.println("*               3 - Atualizar um Produto             *");
-			System.out.println("*               4 - Deletar um Produto               *");
-			System.out.println("*               5 - Realizar uma Busca               *");
-			System.out.println("*               6 - Verificar Disponibilidade        *");
-			System.out.println("*               7 - Sair                             *");
-			System.out.println("*                                                    *");
-			System.out.println("******************************************************");
-			System.out.println("Entre com a opção desejada:                           ");
-			System.out.println("                                                      ");
+			System.out.println("**********************************************************");
+			System.out.println("*                                                        *");
+			System.out.println("*                  MODA AURA SUBVERSIVA                  *");
+			System.out.println("*                                                        *");
+			System.out.println("**********************************************************");
+			System.out.println("*                                                        *");
+			System.out.println("*   1 - Cadastrar Produto                                *");
+			System.out.println("*   2 - Listar Produtos                                  *");
+			System.out.println("*   3 - Atualizar um Produto                             *");
+			System.out.println("*   4 - Deletar um Produto                               *");
+			System.out.println("*   5 - Realizar uma Busca                               *");
+			System.out.println("*   6 - Verificar Disponibilidade (Em desenvolvimento)   *");
+			System.out.println("*   7 - Sair                                             *");
+			System.out.println("*                                                        *");
+			System.out.println("**********************************************************");
+			System.out.println("Entre com a opção desejada:                               ");
+			System.out.println("                                                          ");
 			
 			opcao = leitura.nextInt();
 			
@@ -73,13 +70,14 @@ public class Principal {
 						tipo = leitura.nextInt();
 					} while(tipo < 1 && tipo > 4);
 					
-					System.out.println("\n\nDigite o nome do produto: ");
+					System.out.println("Digite o nome do produto: ");
 					leitura.skip("\\R?");
 					nome = leitura.nextLine();
 					
 					System.out.println("Digite o preço do produto (R$): ");
 					preco = leitura.nextDouble();
 					
+					leitura.nextLine();
 					System.out.println("Digite qual o material: ");
 					material = leitura.nextLine();
 					
@@ -90,8 +88,17 @@ public class Principal {
 							acessorios.cadastrar(new Aneis(tipo, acessorios.gerarID(), nome, preco, material, tamanho));
 						}
 						case 2 -> {
-							System.out.println("Digite a dimensão do brinco: ");
-							dimensao = leitura.nextInt();
+							System.out.println("Digite a largura do brinco em mm (milímetro): ");
+							dimensaoLargura = leitura.nextInt();
+							
+							System.out.println("Digite a altura do brinco em mm (milímetro): ");
+							dimensaoAltura = leitura.nextInt();
+							
+							System.out.println("Por fim, digite a grossura do brinco em mm (milímetro): ");
+							dimensaoGrossura = leitura.nextInt();
+							
+							dimensao = dimensaoLargura + " x " + dimensaoAltura + " x " + dimensaoGrossura;
+							
 							acessorios.cadastrar(new Brincos(tipo, acessorios.gerarID(), nome, preco, material, dimensao));
 						}
 						case 3 -> {
@@ -100,8 +107,17 @@ public class Principal {
 							acessorios.cadastrar(new Colares(tipo, acessorios.gerarID(), nome, preco, material, circunferencia));
 						}
 						case 4 -> {
-							System.out.println("Digite a dimensão do pin: ");
-							dimensao = leitura.nextInt();
+							System.out.println("Digite a largura do pin em mm (milímetro): ");
+							dimensaoLargura = leitura.nextInt();
+							
+							System.out.println("Agora digite a altura do pin em mm (milímetro): ");
+							dimensaoAltura = leitura.nextInt();
+							
+							System.out.println("Por fim, digite a grossura do pin em mm (milímetro): ");
+							dimensaoGrossura = leitura.nextInt();
+							
+							dimensao = dimensaoLargura + " x " + dimensaoAltura + " x " + dimensaoGrossura;
+							
 							acessorios.cadastrar(new Pins(tipo, acessorios.gerarID(), nome, preco, material, dimensao));
 						}
 						default -> {
@@ -110,7 +126,8 @@ public class Principal {
 					}
 				}
 				case 2 -> {
-					
+					System.out.println("Verificar os acessórios no estoque: ");
+					acessorios.listarTodos();
 				}
 				case 3 -> {
 					System.out.println("\n\nAtualizar dados de um acessório: ");
@@ -121,11 +138,87 @@ public class Principal {
 					var buscarPorID = acessorios.buscarNaCollection(id);
 					
 					if(buscarPorID != null) {
+						tipo = buscarPorID.getTipo();
 						
+						System.out.println("\n\nDigite o nome do produto: ");
+						leitura.skip("\\R?");
+						nome = leitura.nextLine();
+						
+						System.out.println("Digite o preço do produto (R$): ");
+						preco = leitura.nextDouble();
+						
+						leitura.nextLine();
+						System.out.println("Digite qual o material: ");
+						material = leitura.nextLine();
+						
+						System.out.println("\n\nDigite o nome do produto: ");
+						leitura.skip("\\R?");
+						nome = leitura.nextLine();
+						
+						System.out.println("Digite o preço do produto (R$): ");
+						preco = leitura.nextDouble();
+						
+						System.out.println("Digite qual o material: ");
+						material = leitura.nextLine();
+						
+						switch(tipo) {
+							case 1 -> {
+								System.out.println("Digite o tamanho do anél: ");
+								tamanho = leitura.nextInt();
+								acessorios.atualizar(new Aneis(tipo, acessorios.gerarID(), nome, preco, material, tamanho));
+							}
+							case 2 -> {
+								System.out.println("Digite a largura do brinco em mm (milímetro): ");
+								dimensaoLargura = leitura.nextInt();
+								
+								System.out.println("Agora digite a altura do brinco em mm (milímetro): ");
+								dimensaoAltura = leitura.nextInt();
+								
+								System.out.println("Por fim, digite a grossura do brinco em mm (milímetro): ");
+								dimensaoGrossura = leitura.nextInt();
+								
+								dimensao = dimensaoLargura + " x " + dimensaoAltura + " x " + dimensaoGrossura;
+								
+								acessorios.atualizar(new Brincos(tipo, acessorios.gerarID(), nome, preco, material, dimensao));
+							}
+							case 3 -> {
+								System.out.println("Digite a circunferência do colar: ");
+								circunferencia = leitura.nextInt();
+								acessorios.atualizar(new Colares(tipo, acessorios.gerarID(), nome, preco, material, circunferencia));
+							}
+							case 4 -> {
+								System.out.println("Digite a largura do pin em mm (milímetro): ");
+								dimensaoLargura = leitura.nextInt();
+								
+								System.out.println("Agora digite a altura do pin em mm (milímetro): ");
+								dimensaoAltura = leitura.nextInt();
+								
+								System.out.println("Por fim, digite a grossura do pin em mm (milímetro): ");
+								dimensaoGrossura = leitura.nextInt();
+								
+								dimensao = dimensaoLargura + " x " + dimensaoAltura + " x " + dimensaoGrossura;;
+								
+								acessorios.atualizar(new Pins(tipo, acessorios.gerarID(), nome, preco, material, dimensao));
+							}
+							default -> {
+								System.out.println("Tipo de categoria inválido!");
+							}
+						}
+					} else {
+						System.out.println("Acessório não encontrado no estoque!");
 					}
 				}
 				case 4 -> {
+					//para apresentar toda a lista antes de deletar
 					System.out.println("\n\nDeletar acessório do estoque!");
+					
+					System.out.println("\nDigite o ID do acessório: ");
+					id = leitura.nextLong();
+					
+					System.out.println("\nQual da lista abaixo deseja deletar?\n");
+					acessorios.listarTodos();
+					
+					acessorios.deletar(id);
 				}
 				case 5 -> {
 					/*
@@ -147,59 +240,12 @@ public class Principal {
 							System.out.println("Digite o ID do produto: ");
 							id = leitura.nextLong();
 
-							var buscarPorConta = acessorios.buscarNaCollection(id);
+							var buscarPorAcessorio = acessorios.buscarNaCollection(id);
 							
-							if (buscarPorConta != null) {
-								
-								tipo = buscarPorConta.getTipo();
-								
-								System.out.println("\n\nDigite o nome do produto: ");
-								leitura.skip("\\R?");
-								nome = leitura.nextLine();
-								
-								System.out.println("Digite o preço do produto (R$): ");
-								preco = leitura.nextDouble();
-								
-								System.out.println("Digite qual o material: ");
-								material = leitura.nextLine();
-								
-								System.out.println("\n\nDigite o nome do produto: ");
-								leitura.skip("\\R?");
-								nome = leitura.nextLine();
-								
-								System.out.println("Digite o preço do produto (R$): ");
-								preco = leitura.nextDouble();
-								
-								System.out.println("Digite qual o material: ");
-								material = leitura.nextLine();
-								
-								switch(tipo) {
-									case 1 -> {
-										System.out.println("Digite o tamanho do anél: ");
-										tamanho = leitura.nextInt();
-										acessorios.atualizar(new Aneis(tipo, acessorios.gerarID(), nome, preco, material, tamanho));
-									}
-									case 2 -> {
-										System.out.println("Digite a dimensão do brinco: ");
-										dimensao = leitura.nextInt();
-										acessorios.atualizar(new Brincos(tipo, acessorios.gerarID(), nome, preco, material, dimensao));
-									}
-									case 3 -> {
-										System.out.println("Digite a circunferência do colar: ");
-										circunferencia = leitura.nextInt();
-										acessorios.atualizar(new Colares(tipo, acessorios.gerarID(), nome, preco, material, circunferencia));
-									}
-									case 4 -> {
-										System.out.println("Digite a dimensão do pin: ");
-										dimensao = leitura.nextInt();
-										acessorios.atualizar(new Pins(tipo, acessorios.gerarID(), nome, preco, material, dimensao));
-									}
-									default -> {
-										System.out.println("Tipo de categoria inválido!");
-									}
-								}
+							if (buscarPorAcessorio != null) {
+								buscarPorAcessorio.descricao();
 							} else {
-								System.out.println("\nProduto não encontrado!");
+								System.out.println("\nAcessório não encontrado!");
 							}
 							
 						}
