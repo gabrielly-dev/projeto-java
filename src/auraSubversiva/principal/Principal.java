@@ -1,5 +1,4 @@
 package auraSubversiva.principal;
-
 import java.util.Scanner;
 
 /*
@@ -23,9 +22,31 @@ public class Principal {
 		
 		int opcao, tipo, tamanho, circunferencia, tipoBusca, dimensaoLargura, dimensaoAltura, dimensaoGrossura;
 		double preco;
-		String nome, material, dimensao;
+		String nome, material, dimensao, testeExemplo1, testeExemplo2, testeExemplo3, testeExemplo4, testeExemplo5, testeExemplo6;
 		Long id;
+		
+		testeExemplo1 = 45 + " x " + 21 + " x " + 2;
+		testeExemplo2 = 43 + " x " + 13 + " x " + 3;
+		testeExemplo3 = 54 + " x " + 34 + " x " + 4;
+		testeExemplo4 = 65 + " x " + 22 + " x " + 5;
+		testeExemplo5 = 26 + " x " + 26 + " x " + 2;
+		testeExemplo6 = 56 + " x " + 21 + " x " + 5;
 
+		acessorios.cadastrar(new Aneis(1, acessorios.gerarID(), "Anel de Caveira", 59.90, "Prata", 18));
+		acessorios.cadastrar(new Aneis(1, acessorios.gerarID(), "Anel Gótico", 89.90, "Titânio", 20));
+		acessorios.cadastrar(new Aneis(1, acessorios.gerarID(), "Anel de Dragão", 99.90, "Aço Damasco", 22));
+
+		acessorios.cadastrar(new Brincos(2, acessorios.gerarID(), "Brinco de Lua", 39.90, "Aço Inox", testeExemplo1));
+		acessorios.cadastrar(new Brincos(2, acessorios.gerarID(), "Brinco de Gota", 49.90, "Prata", testeExemplo2));
+		acessorios.cadastrar(new Brincos(2, acessorios.gerarID(), "Brinco de Estrela", 29.90, "Prata 925", testeExemplo3));
+
+		acessorios.cadastrar(new Colares(3, acessorios.gerarID(), "Colar de Pentagrama", 79.90, "Prata", 45));
+		acessorios.cadastrar(new Colares(3, acessorios.gerarID(), "Colar Choker", 69.90, "Couro", 40));
+		acessorios.cadastrar(new Colares(3, acessorios.gerarID(), "Colar de Corvo", 89.90, "Ouro Negro", 50));
+
+		acessorios.cadastrar(new Pins(4, acessorios.gerarID(), "Pin de Morcego", 19.90, "Metal", testeExemplo4));
+		acessorios.cadastrar(new Pins(4, acessorios.gerarID(), "Pin de Abóbora", 15.90, "Acrílico", testeExemplo5));
+		acessorios.cadastrar(new Pins(4, acessorios.gerarID(), "Pin de Gato Preto", 12.90, "Resina", testeExemplo6));
 		
 		while (true) {
 			System.out.println("**********************************************************");
@@ -130,17 +151,19 @@ public class Principal {
 					acessorios.listarTodos();
 				}
 				case 3 -> {
+					tipo = 0;
+					
 					System.out.println("\n\nAtualizar dados de um acessório: ");
 					
 					System.out.println("\nDigite o id do acessório, para a busca: ");
 					id = leitura.nextLong();
 					
-					var buscarPorID = acessorios.buscarNaCollection(id);
+					var buscarPorID = acessorios.buscarNaCollection(id);					
 					
 					if(buscarPorID != null) {
 						tipo = buscarPorID.getTipo();
 						
-						System.out.println("\n\nDigite o nome do produto: ");
+						System.out.println("Digite o nome do produto: ");
 						leitura.skip("\\R?");
 						nome = leitura.nextLine();
 						
@@ -148,16 +171,6 @@ public class Principal {
 						preco = leitura.nextDouble();
 						
 						leitura.nextLine();
-						System.out.println("Digite qual o material: ");
-						material = leitura.nextLine();
-						
-						System.out.println("\n\nDigite o nome do produto: ");
-						leitura.skip("\\R?");
-						nome = leitura.nextLine();
-						
-						System.out.println("Digite o preço do produto (R$): ");
-						preco = leitura.nextDouble();
-						
 						System.out.println("Digite qual o material: ");
 						material = leitura.nextLine();
 						

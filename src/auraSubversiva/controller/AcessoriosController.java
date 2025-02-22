@@ -89,7 +89,7 @@ public class AcessoriosController implements AcessoriosRepository {
 	public Acessorios buscarNaCollection(Long id) {
 		for (var acessorio : armazenamentoDeAcessorios) {
 			System.out.println();
-			if (acessorio.getId() == id) {
+			if (acessorio.getId().equals(id)) {
 				return acessorio;
 			}
 		}
