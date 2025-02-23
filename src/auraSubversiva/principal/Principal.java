@@ -1,4 +1,5 @@
 package auraSubversiva.principal;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /*
@@ -67,10 +68,16 @@ public class Principal {
 			System.out.println("Entre com a opção desejada:                               ");
 			System.out.println("                                                          ");
 			
-			opcao = leitura.nextInt();
+			try {
+				opcao = leitura.nextInt();
+			} catch (InputMismatchException e) {
+				System.out.println("\nDigite valores inteiros!");
+				leitura.nextLine();
+				opcao = 0;
+			}
 			
 			
-			if (opcao == 9) {
+			if (opcao == 7) {
 				System.out.println("\nLoja Aura Subversiva - Libere o seu estranho interior!");
 				sobre();
 				leitura.close();
@@ -82,6 +89,8 @@ public class Principal {
 					System.out.println("Cadastrar Produto\n\n");
 	
 					tipo = 0;
+					
+					
 					do {
 						System.out.println("Tipo de Acessório:   ");
 						System.out.println("     1. Anéis        ");
@@ -104,7 +113,7 @@ public class Principal {
 					
 					switch(tipo) {
 						case 1 -> {
-							System.out.println("Digite o tamanho do anél: ");
+							System.out.println("Digite o tamanho do anel: ");
 							tamanho = leitura.nextInt();
 							acessorios.cadastrar(new Aneis(tipo, acessorios.gerarID(), nome, preco, material, tamanho));
 						}
@@ -176,9 +185,9 @@ public class Principal {
 						
 						switch(tipo) {
 							case 1 -> {
-								System.out.println("Digite o tamanho do anél: ");
+								System.out.println("Digite o tamanho do anel: ");
 								tamanho = leitura.nextInt();
-								acessorios.atualizar(new Aneis(tipo, acessorios.gerarID(), nome, preco, material, tamanho));
+								acessorios.atualizar(new Aneis(tipo, id, nome, preco, material, tamanho));
 							}
 							case 2 -> {
 								System.out.println("Digite a largura do brinco em mm (milímetro): ");
@@ -192,12 +201,12 @@ public class Principal {
 								
 								dimensao = dimensaoLargura + " x " + dimensaoAltura + " x " + dimensaoGrossura;
 								
-								acessorios.atualizar(new Brincos(tipo, acessorios.gerarID(), nome, preco, material, dimensao));
+								acessorios.atualizar(new Brincos(tipo, id, nome, preco, material, dimensao));
 							}
 							case 3 -> {
 								System.out.println("Digite a circunferência do colar: ");
 								circunferencia = leitura.nextInt();
-								acessorios.atualizar(new Colares(tipo, acessorios.gerarID(), nome, preco, material, circunferencia));
+								acessorios.atualizar(new Colares(tipo, id, nome, preco, material, circunferencia));
 							}
 							case 4 -> {
 								System.out.println("Digite a largura do pin em mm (milímetro): ");
@@ -211,7 +220,7 @@ public class Principal {
 								
 								dimensao = dimensaoLargura + " x " + dimensaoAltura + " x " + dimensaoGrossura;;
 								
-								acessorios.atualizar(new Pins(tipo, acessorios.gerarID(), nome, preco, material, dimensao));
+								acessorios.atualizar(new Pins(tipo, id, nome, preco, material, dimensao));
 							}
 							default -> {
 								System.out.println("Tipo de categoria inválido!");
